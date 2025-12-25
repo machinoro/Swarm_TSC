@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="tarot" xmlns:xacro="https://www.ros.org/wiki/xacro">
+  <gazebo reference="base_link">
+    <material>Gazebo/DarkGray</material>
+  </gazebo>
+  <gazebo reference="rotor_0">
+    <material>Gazebo/Red</material>
+  </gazebo>
+  <gazebo reference="rotor_1">
+    <material>Gazebo/Red</material>
+  </gazebo>
+  <gazebo reference="rotor_2">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="rotor_3">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo>
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+    </physics>
+  </gazebo>
+</robot>
