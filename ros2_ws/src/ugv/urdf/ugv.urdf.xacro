@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot name="mecanum_wheel_robot" xmlns:xacro="https://ros.org/wiki/xacro">
+<robot name="ugv" xmlns:xacro="https://ros.org/wiki/xacro">
   <!-- Included files -->
   <xacro:include filename="$(find ugv)/urdf/mecanum.xacro"></xacro:include>
   <xacro:include filename="$(find ugv)/urdf/shapes.xacro"></xacro:include>
