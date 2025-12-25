@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="mecanum_wheel" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find ugv )/urdf/wheel.xacro"></xacro:include>
+  <xacro:include filename="$(find ugv)/urdf/rollers.xacro"></xacro:include>
+  <xacro:macro name="mecanum_wheel" params="name side">
+    <xacro:wheel_link name="${name}" side="${side}"></xacro:wheel_link>
+    <xacro:rollers_link name="${name}" side="${side}"></xacro:rollers_link>
+    <!-- <transmission name="${name}_wheel_trans"> -->
+    <!--   <type>transmission_interface/SimpleTransmission</type> -->
+    <!--   <joint name="${name}_wheel_joint"> -->
+    <!--     <hardwareInterface>${interface}</hardwareInterface> -->
+    <!--   </joint> -->
+    <!--   <actuator name="${name}_wheel_motor"> -->
+    <!--     <hardwareInterface>${interface}</hardwareInterface> -->
+    <!--     <mechanismReduction>1</mechanismReduction> -->
+    <!--   </actuator> -->
+    <!-- </transmission> -->
+  </xacro:macro>
+</robot>

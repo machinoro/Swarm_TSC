@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="mecanum_wheel_robot" xmlns:xacro="https://ros.org/wiki/xacro">
+  <!-- Included files -->
+  <xacro:include filename="$(find ugv)/urdf/mecanum.xacro"></xacro:include>
+  <xacro:include filename="$(find ugv)/urdf/shapes.xacro"></xacro:include>
+  <xacro:include filename="$(find ugv)/urdf/joints.xacro"></xacro:include>
+  <xacro:include filename="$(find ugv)/urdf/gazebo.xacro"></xacro:include>
+  <xacro:include filename="$(find ugv)/urdf/material.xacro"></xacro:include>
+  <!-- Base plates -->
+  <xacro:box_link colli_name="collision_chassis" color="white" mass="1" name="base_link" rpy="0 0 0" x="0.4" xyz="0 0 0" y="0.3" z="0.003"></xacro:box_link>
+  <xacro:box_link colli_name="collision_second_floor" color="white" mass="1" name="second_floor" rpy="0 0 0" x="0.4" xyz="0 0 0" y="0.3" z="0.003"></xacro:box_link>
+  <xacro:joint child="second_floor" name="second_floor_joint" parent="base_link" rpy="0 0 0" type="fixed" xyz="0 0 0.2"></xacro:joint>
+  <!-- Wheels -->
+  <xacro:mecanum_wheel name="front_right" side="1"></xacro:mecanum_wheel>
+  <xacro:mecanum_wheel name="front_left" side="-1"></xacro:mecanum_wheel>
+  <xacro:mecanum_wheel name="rear_right" side="-1"></xacro:mecanum_wheel>
+  <xacro:mecanum_wheel name="rear_left" side="1"></xacro:mecanum_wheel>
+  <xacro:joint child="front_right_wheel_link" name="front_right_wheel_joint" parent="motor_1" rpy="0 ${pi/2} 0" type="continuous" xyz="0 0 0.065"></xacro:joint>
+  <xacro:joint child="front_left_wheel_link" name="front_left_wheel_joint" parent="motor_2" rpy="0 ${pi/2} 0" type="continuous" xyz="0 0 -0.065"></xacro:joint>
+  <xacro:joint child="rear_right_wheel_link" name="rear_right_wheel_joint" parent="motor_3" rpy="0 ${pi/2} 0" type="continuous" xyz="0 0 0.065"></xacro:joint>
+  <xacro:joint child="rear_left_wheel_link" name="rear_left_wheel_joint" parent="motor_4" rpy="0 ${pi/2} 0" type="continuous" xyz="0 0 -0.065"></xacro:joint>
+  <!-- Support cylinder -->
+  <xacro:cylinder_link length="0.2" mass="0.1" material="gray" name="cylinder_1" radius="0.01" rpy="0 0 0" xyz="0 0 0.1"></xacro:cylinder_link>
+  <xacro:joint child="cylinder_1" name="cylinder_1_joint" parent="base_link" rpy="0 0 0" type="fixed" xyz="0.18 0.11 0.1"></xacro:joint>
+  <xacro:cylinder_link length="0.2" mass="0.1" material="gray" name="cylinder_2" radius="0.01" rpy="0 0 0" xyz="0 0 0"></xacro:cylinder_link>
+  <xacro:joint child="cylinder_2" name="cylinder_2_joint" parent="base_link" rpy="0 0 0" type="fixed" xyz="0.18 -0.11 0.1"></xacro:joint>
+  <xacro:cylinder_link length="0.2" mass="0.1" material="gray" name="cylinder_3" radius="0.01" rpy="0 0 0" xyz="0 0 0"></xacro:cylinder_link>
+  <xacro:joint child="cylinder_3" name="cylinder_3_joint" parent="base_link" rpy="0 0 0" type="fixed" xyz="-0.18 0.11 0.1"></xacro:joint>
+  <xacro:cylinder_link length="0.2" mass="0.1" material="gray" name="cylinder_4" radius="0.01" rpy="0 0 0" xyz="0 0 0"></xacro:cylinder_link>
+  <xacro:joint child="cylinder_4" name="cylinder_4_joint" parent="base_link" rpy="0 0 0" type="fixed" xyz="-0.18 -0.11 0.1"></xacro:joint>
+  <!-- Motors -->
+  <!-- Front right -->
+  <xacro:cylinder_link length="0.057" mass="0.2" material="gray" name="motor_1" radius="0.0175" rpy="0 0 0" xyz="0.2 -0.13 -0.02"></xacro:cylinder_link>
+  <xacro:joint child="motor_1" name="motor_1_joint" parent="base_link" rpy="1.5708 0 0" type="fixed" xyz="0.2 -0.13 -0.02"></xacro:joint>
+  <!-- Front left -->
+  <xacro:cylinder_link length="0.057" mass="0.2" material="gray" name="motor_2" radius="0.0175" rpy="0 0 0" xyz="0.2 0.13 -0.02"></xacro:cylinder_link>
+  <xacro:joint child="motor_2" name="motor_2_joint" parent="base_link" rpy="1.5708 0 0" type="fixed" xyz="0.2 0.13 -0.02"></xacro:joint>
+  <!-- Rear right -->
+  <xacro:cylinder_link length="0.057" mass="0.2" material="gray" name="motor_3" radius="0.0175" rpy="0 0 0" xyz="-0.2 -0.13 -0.02"></xacro:cylinder_link>
+  <xacro:joint child="motor_3" name="motor_3_joint" parent="base_link" rpy="1.5708 0 0" type="fixed" xyz="-0.2 -0.13 -0.02"></xacro:joint>
+  <!-- Rear left -->
+  <xacro:cylinder_link length="0.057" mass="0.2" material="gray" name="motor_4" radius="0.0175" rpy="0 0 0" xyz="-0.2 0.13 -0.02"></xacro:cylinder_link>
+  <xacro:joint child="motor_4" name="motor_4_joint" parent="base_link" rpy="1.5708 0 0" type="fixed" xyz="-0.2 0.13 -0.02"></xacro:joint>
+  <!-- Battery -->
+  <link name="battery">
+    <inertial>
+      <mass value="2.0"></mass>
+      <origin rpy="0 0 0" xyz="0 0 0.0"></origin>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"></inertia>
+    </inertial>
+    <collision>
+      <geometry>
+        <box size="0.20 0.09 0.06"></box>
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <box size="0.09 0.20 0.06"></box>
+      </geometry>
+      <material name="red"></material>
+    </visual>
+  </link>
+  <xacro:joint child="battery" name="battery_joint" parent="second_floor" rpy="0 0 0" type="fixed" xyz="0 0 -0.03"></xacro:joint>
+</robot>

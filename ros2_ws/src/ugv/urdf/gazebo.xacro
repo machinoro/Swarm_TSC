@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="m2wr" xmlns:xacro="https://www.ros.org/wiki/xacro">
+  <gazebo reference="motor_1">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="motor_2">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="motor_3">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="motor_4">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="battery">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="base_link">
+    <material>Gazebo/White</material>
+  </gazebo>
+  <gazebo reference="rear_left_wheel_link">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="rear_right_wheel_link">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <!--test them banh-->
+  <gazebo reference="front_right_wheel_link">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="front_left_wheel_link">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo>
+    <plugin filename="libign_ros2_control-system.so" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+      <parameters>$(find ugv)/config/controllers.yaml</parameters>
+    </plugin>
+  </gazebo>
+</robot>

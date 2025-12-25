@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="https://www.ros.org/wiki/xacro">
+  <!-- Generic box link -->
+  <xacro:macro name="box_link" params="name colli_name x y z mass color xyz rpy">
+    <link name="${name}">
+      <inertial>
+        <mass value="${mass}"></mass>
+        <origin rpy="0 0 0" xyz="0 0 0"></origin>
+        <inertia ixx="0.00750075" ixy="0" ixz="0" iyy="0.013334" iyz="0" izz="0.020833"></inertia>
+      </inertial>
+      <collision name="${colli_name}">
+        <geometry>
+          <box size="${x} ${y} ${z}"></box>
+        </geometry>
+      </collision>
+      <visual>
+        <origin rpy="${rpy}" xyz="${xyz}"></origin>
+        <geometry>
+          <box size="${x} ${y} ${z}"></box>
+        </geometry>
+        <material name="${color}"></material>
+      </visual>
+    </link>
+  </xacro:macro>
+  <!-- Generic cylinder -->
+  <xacro:macro name="cylinder_link" params="name length radius mass material rpy xyz">
+    <link name="${name}">
+      <inertial>
+        <mass value="${mass}"></mass>
+        <origin rpy="${rpy}" xyz="${xyz}"></origin>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"></inertia>
+      </inertial>
+      <collision>
+        <geometry>
+          <cylinder length="${length}" radius="${radius}"></cylinder>
+        </geometry>
+      </collision>
+      <visual>
+        <geometry>
+          <cylinder length="${length}" radius="${radius}"></cylinder>
+        </geometry>
+        <material name="${material}"></material>
+      </visual>
+    </link>
+  </xacro:macro>
+</robot>

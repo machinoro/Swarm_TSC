@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="wheel" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="wheel_link" params="name side">
+    <link name="${name}_wheel_link">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"></origin>
+        <geometry>
+          <mesh filename="package://ugv/meshes/visual/wheel.dae" scale="1 0.6 0.6"></mesh>
+        </geometry>
+        <material name="white"></material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://ugv/meshes/collision/wheel.stl" scale="1 0.6 0.6"></mesh>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0"></origin>
+        <mass value="2.0"></mass>
+        <inertia ixx="0.042025" ixy="0.0" ixz="0.0" iyy="0.024279" iyz="0.0" izz="0.024279"></inertia>
+      </inertial>
+    </link>
+    <gazebo reference="${name}_wheel_link">
+      <mu1>0.6</mu1>
+      <mu2>0.6</mu2>
+      <kp>10000000.0</kp>
+      <kd>1.0</kd>
+      <fdir1>0 1 0</fdir1>
+    </gazebo>
+  </xacro:macro>
+</robot>

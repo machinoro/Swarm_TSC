@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="https://www.ros.org/wiki/xacro">
+  <xacro:macro name="joint" params="name type parent child xyz rpy">
+    <joint name="${name}" type="${type}">
+      <parent link="${parent}"></parent>
+      <child link="${child}"></child>
+      <origin rpy="${rpy}" xyz="${xyz}"></origin>
+    </joint>
+  </xacro:macro>
+</robot>
