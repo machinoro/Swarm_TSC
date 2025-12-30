@@ -24,36 +24,6 @@
       </material>
     </visual>
   </link>
-  <!-- Rotor 0 -->
-  <link name="rotor_0">
-    <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"></origin>
-      <mass value="0.005"></mass>
-      <inertia ixx="9.75e-07" ixy="0" ixz="0" iyy="0.000273104" iyz="0" izz="0.000274004"></inertia>
-    </inertial>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"></origin>
-      <geometry>
-        <cylinder length="0.02" radius="0.32"></cylinder>
-      </geometry>
-    </collision>
-    <visual>
-      <origin rpy="0 0 0" xyz="-0.368 -0.362 -0.025"></origin>
-      <geometry>
-        <mesh filename="package://uav/meshes/collision/tarot_prop_ccw.stl" scale="2.5 2.5 1"></mesh>
-      </geometry>
-      <material name="red">
-        <color rgba="1.0 0 0 1.0"></color>
-      </material>
-    </visual>
-  </link>
-  <joint name="rotor_0_joint" type="continuous">
-    <parent link="base_link"></parent>
-    <child link="rotor_0"></child>
-    <origin rpy="0 0 0" xyz="0.40 -0.40 0.051"></origin>
-    <axis xyz="0 0 1"></axis>
-    <dynamics damping="0" friction="0"></dynamics>
-  </joint>
   <!-- Rotor 1 -->
   <link name="rotor_1">
     <inertial>
@@ -79,10 +49,10 @@
   </link>
   <joint name="rotor_1_joint" type="continuous">
     <parent link="base_link"></parent>
-    <child link="rotor_1"></child>
-    <origin rpy="0 0 0" xyz="-0.40 0.40 0.051"></origin>
+    <child link="rotor_0"></child>
+    <origin rpy="0 0 0" xyz="0.40 -0.40 0.051"></origin>
     <axis xyz="0 0 1"></axis>
-    <dynamics damping="0.0" friction="0.0"></dynamics>
+    <dynamics damping="0" friction="0"></dynamics>
   </joint>
   <!-- Rotor 2 -->
   <link name="rotor_2">
@@ -98,19 +68,19 @@
       </geometry>
     </collision>
     <visual>
-      <origin rpy="0 0 0" xyz="-0.368 0.362 -0.025"></origin>
+      <origin rpy="0 0 0" xyz="-0.368 -0.362 -0.025"></origin>
       <geometry>
-        <mesh filename="package://uav/meshes/collision/tarot_prop_cw.stl" scale="2.5 2.5 1"></mesh>
+        <mesh filename="package://uav/meshes/collision/tarot_prop_ccw.stl" scale="2.5 2.5 1"></mesh>
       </geometry>
-      <material name="blue">
-        <color rgba="0 0 1.0 1.0"></color>
+      <material name="red">
+        <color rgba="1.0 0 0 1.0"></color>
       </material>
     </visual>
   </link>
   <joint name="rotor_2_joint" type="continuous">
     <parent link="base_link"></parent>
-    <child link="rotor_2"></child>
-    <origin rpy="0 0 0" xyz="0.40 0.40 0.051"></origin>
+    <child link="rotor_1"></child>
+    <origin rpy="0 0 0" xyz="-0.40 0.40 0.051"></origin>
     <axis xyz="0 0 1"></axis>
     <dynamics damping="0.0" friction="0.0"></dynamics>
   </joint>
@@ -138,6 +108,36 @@
     </visual>
   </link>
   <joint name="rotor_3_joint" type="continuous">
+    <parent link="base_link"></parent>
+    <child link="rotor_2"></child>
+    <origin rpy="0 0 0" xyz="0.40 0.40 0.051"></origin>
+    <axis xyz="0 0 1"></axis>
+    <dynamics damping="0.0" friction="0.0"></dynamics>
+  </joint>
+  <!-- Rotor 4 -->
+  <link name="rotor_4">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"></origin>
+      <mass value="0.005"></mass>
+      <inertia ixx="9.75e-07" ixy="0" ixz="0" iyy="0.000273104" iyz="0" izz="0.000274004"></inertia>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"></origin>
+      <geometry>
+        <cylinder length="0.02" radius="0.32"></cylinder>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.368 0.362 -0.025"></origin>
+      <geometry>
+        <mesh filename="package://uav/meshes/collision/tarot_prop_cw.stl" scale="2.5 2.5 1"></mesh>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 1.0 1.0"></color>
+      </material>
+    </visual>
+  </link>
+  <joint name="rotor_4_joint" type="continuous">
     <parent link="base_link"></parent>
     <child link="rotor_3"></child>
     <origin rpy="0 0 0" xyz="-0.40 -0.40 0.051"></origin>
