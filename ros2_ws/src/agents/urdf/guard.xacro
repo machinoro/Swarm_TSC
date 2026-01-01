@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="guard" params="name xyz rpy parent">
+    <link name="${name}">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"></origin>
+        <mass value="0.0077"></mass>
+        <inertia ixx="9.48e-06" ixy="-4.494e-09" ixz="-4.536e-07" iyy="1.1748e-05" iyz="-1.102e-09" izz="2.118e-05"></inertia>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://agents/meshes/visual/guard.dae"></mesh>
+        </geometry>
+        <material name="guard_material"></material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://agents/meshes/collision/guard.stl"></mesh>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${name}_joint" type="fixed">
+      <parent link="${parent}"></parent>
+      <child link="${name}"></child>
+      <origin rpy="${rpy}" xyz="${xyz}"></origin>
+    </joint>
+  </xacro:macro>
+</robot>

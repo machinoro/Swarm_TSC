@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="agents" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find agents)/urdf/motor.xacro"></xacro:include>
+  <xacro:include filename="$(find agents)/urdf/feet.xacro"></xacro:include>
+  <xacro:include filename="$(find agents)/urdf/propeller.xacro"></xacro:include>
+  <xacro:include filename="$(find agents)/urdf/guard.xacro"></xacro:include>
+  <material name="base_material">
+    <color rgba="0.501961 0.486275 0.439216 1"></color>
+  </material>
+  <material name="motor_material">
+    <color rgba="0.607843 0.52549 0.364706 1"></color>
+  </material>
+  <material name="landing_material">
+    <color rgba="0.231373 0.380392 0.705882 1"></color>
+  </material>
+  <material name="propeller_material_cw">
+    <color rgba="0.980392 0.713725 0.00392157 1"></color>
+  </material>
+  <material name="propeller_material_ccw">
+    <color rgba="0.280392 0.713725 0.00392157 1"></color>
+  </material>
+  <link name="base">
+    <inertial>
+      <origin xyz="0 0 0"></origin>
+      <mass value="0.22"></mass>
+      <inertia ixx="0.00067" ixy="0.0" ixz="0.0" iyy="0.00067" iyz="0.0" izz="0.00124"></inertia>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.009"></origin>
+      <geometry>
+        <mesh filename="package://agents/meshes/visual/chasis.dae"></mesh>
+      </geometry>
+      <material name="base_material"></material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"></origin>
+      <geometry>
+        <mesh filename="package://agents/meshes/collision/chasis.stl"></mesh>
+      </geometry>
+    </collision>
+  </link>
+  <xacro:motor name="motor_1" rpy="0 0 -0.34906" xyz="0.09877 -0.07831 0.0065"></xacro:motor>
+  <xacro:motor name="motor_2" rpy="0 0 0.34906" xyz="0.09877 0.07831 0.0065"></xacro:motor>
+  <xacro:motor name="motor_3" rpy="0 0 -0.34906" xyz="-0.09877 0.07831 0.0065"></xacro:motor>
+  <xacro:motor name="motor_4" rpy="0 0 0.34906" xyz="-0.09877 -0.07831 0.0065"></xacro:motor>
+  <xacro:propeller direction="cw" name="propeller_1" parent="motor_1"></xacro:propeller>
+  <xacro:propeller direction="ccw" name="propeller_2" parent="motor_2"></xacro:propeller>
+  <xacro:propeller direction="cw" name="propeller_3" parent="motor_3"></xacro:propeller>
+  <xacro:propeller direction="ccw" name="propeller_4" parent="motor_4"></xacro:propeller>
+  <xacro:feet name="feet_1" rpy="1.57079 0  0.34906" xyz="0.0528258  0.0668223 -0.033"></xacro:feet>
+  <xacro:feet name="feet_2" rpy="1.57079 0  2.79252" xyz="-0.0574252 0.0574254 -0.033"></xacro:feet>
+  <xacro:feet name="feet_3" rpy="1.57079 0 -2.79252" xyz="-0.054005 -0.0677087 -0.033"></xacro:feet>
+  <xacro:feet name="feet_4" rpy="1.57079 0 -0.34906" xyz="0.0562461 -0.0583117 -0.033"></xacro:feet>
+  <xacro:guard name="guard_1" parent="motor_1" rpy="0 0 0 " xyz="0 0 0"></xacro:guard>
+  <xacro:guard name="guard_2" parent="motor_2" rpy="0 0 0 " xyz="0 0 0"></xacro:guard>
+  <xacro:guard name="guard_3" parent="motor_3" rpy="0 3.141592  0 " xyz="0 0 0"></xacro:guard>
+  <xacro:guard name="guard_4" parent="motor_4" rpy="0 3.141592 0 " xyz="0 0 0"></xacro:guard>
+  <link name="battery">
+    <inertial>
+      <mass value="0.4"></mass>
+      <origin rpy="0 0 0" xyz="0 0 0"></origin>
+      <inertia ixx="3.046e-04" ixy="-6.374e-06" ixz="4.694e-06" iyy="4.975e-04" iyz="1.142e-04" izz="0.001"></inertia>
+    </inertial>
+    <collision>
+      <geometry>
+        <box size="0.108 0.034 0.029"></box>
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <box size="0.108 0.034 0.029"></box>
+      </geometry>
+      <material name="red"></material>
+    </visual>
+  </link>
+  <joint name="battery_joint" type="fixed">
+    <parent link="base"></parent>
+    <child link="battery"></child>
+    <origin rpy="0 0 1.57079" xyz="0 0 -0.0145"></origin>
+  </joint>
+</robot>

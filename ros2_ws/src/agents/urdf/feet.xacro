@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="feet" params="name xyz rpy">
+    <link name="${name}">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"></origin>
+        <mass value="0.0077"></mass>
+        <inertia ixx="9.646e-06" ixy="-7.68e-07" ixz="-7.325e-07" iyy="5.342e-06" iyz="-8.58e-07" izz="1.392e-05"></inertia>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://agents/meshes/visual/feet.dae"></mesh>
+        </geometry>
+        <material name="landing_material"></material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://agents/meshes/collision/feet.stl"></mesh>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${name}_joint" type="fixed">
+      <parent link="base"></parent>
+      <child link="${name}"></child>
+      <origin rpy="${rpy}" xyz="${xyz}"></origin>
+    </joint>
+  </xacro:macro>
+</robot>

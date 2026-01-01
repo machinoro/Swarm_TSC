@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="https://ros.org/wiki/xacro">
+  <gazebo reference="base">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="motor_1">
+    <material>Gazebo/Brown</material>
+  </gazebo>
+  <gazebo reference="motor_2">
+    <material>Gazebo/Brown</material>
+  </gazebo>
+  <gazebo reference="motor_3">
+    <material>Gazebo/Brown</material>
+  </gazebo>
+  <gazebo reference="motor_4">
+    <material>Gazebo/Brown</material>
+  </gazebo>
+  <gazebo reference="propeller_fl">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+  <gazebo reference="propeller_rr">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+  <gazebo reference="propeller_fr">
+    <material>Gazebo/Green</material>
+  </gazebo>
+  <gazebo reference="propeller_rl">
+    <material>Gazebo/Green</material>
+  </gazebo>
+  <gazebo reference="foot_fl">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="foot_fr">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="foot_rr">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="foot_rl">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+</robot>
