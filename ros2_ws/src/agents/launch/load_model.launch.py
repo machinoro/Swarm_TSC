@@ -17,7 +17,7 @@ def generate_launch_description():
     robot_desc = robot_description_config.toxml()
 
     resource_path = SetEnvironmentVariable(
-        name="IGN_GAZEBO_RESOURCE_PATH", value=[os.path.join(pkg, "..")]
+        name="GZ_SIM_RESOURCE_PATH", value=[os.path.join(pkg, "..")]
     )
 
     gazebo_sim = IncludeLaunchDescription(

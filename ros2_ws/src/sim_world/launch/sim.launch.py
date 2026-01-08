@@ -22,7 +22,7 @@ def generate_launch_description():
     ugv_parent_dir = os.path.dirname(pkg_ugv)
 
     resource_path = SetEnvironmentVariable(
-        name="IGN_GAZEBO_RESOURCE_PATH",
+        name="GZ_SIM_RESOURCE_PATH",
         value=[
             uav_parent_dir,
             ":",

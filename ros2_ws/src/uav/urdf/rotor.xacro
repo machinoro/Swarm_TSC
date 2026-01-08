@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="rotor" params="number xyz rotation_type">
+    <link name="motor_${number}">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"></origin>
+        <mass value="0.005"></mass>
+        <inertia ixx="9.75e-07" ixy="0" ixz="0" iyy="0.000273104" iyz="0" izz="0.000274004"></inertia>
+      </inertial>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"></origin>
+        <geometry>
+          <cylinder length="0.02" radius="0.32"></cylinder>
+        </geometry>
+      </collision>
+      <visual>
+        <origin rpy="0 0 0" xyz="-0.368 ${0.362 if rotation_type == 'cw' else -0.362} -0.025"></origin>
+        <geometry>
+          <mesh filename="package://uav/meshes/collision/tarot_prop_${rotation_type}.stl" scale="2.5 2.5 1"></mesh>
+        </geometry>
+        <material name="${'blue' if rotation_type == 'ccw' else 'red'}"></material>
+      </visual>
+    </link>
+    <joint name="motor_${number}_joint" type="continuous">
+      <parent link="base_link"></parent>
+      <child link="motor_${number}"></child>
+      <origin rpy="0 0 0" xyz="${xyz}"></origin>
+      <axis xyz="0 0 1"></axis>
+      <dynamics damping="0" friction="0"></dynamics>
+    </joint>
+    <gazebo reference="motor_${number}">
+      <plugin filename="ignition-gazebo-multicopter-motor-model-system" name="ignition::gazebo::systems::MulticopterMotorModel">
+        <robotNamespace>tarot</robotNamespace>
+        <jointName>motor_${number}_joint</jointName>
+        <linkName>motor_${number}</linkName>
+        <turningDirection>${rotation_type}</turningDirection>
+        <timeConstantUp>0.0125</timeConstantUp>
+        <timeConstantDown>0.025</timeConstantDown>
+        <maxRotVelocity>1100</maxRotVelocity>
+        <motorConstant>8.54858e-06</motorConstant>
+        <momentConstant>0.06</momentConstant>
+        <commandSubTopic>command/motor_speed</commandSubTopic>
+        <motorNumber>${number}</motorNumber>
+        <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+        <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+        <motorSpeedPubTopic>motor_speed/${number}</motorSpeedPubTopic>
+        <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+        <motorType>velocity</motorType>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+</robot>
