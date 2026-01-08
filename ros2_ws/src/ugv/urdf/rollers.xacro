@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot name="wheel" xmlns:xacro="https://www.ros.org/wiki/xacro">
+<robot name="wheel" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:macro name="roller_origin" params="th side">
     <xacro:if value="${side==1}">
       <origin rpy="${atan(-tan(th)*sqrt(2.0))} ${asin(cos(th)/sqrt(2.0))} ${atan(sin(th))}" xyz="0 ${0.05*cos(th)} ${0.05*sin(th)}"></origin>

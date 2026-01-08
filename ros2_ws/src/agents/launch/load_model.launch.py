@@ -13,8 +13,7 @@ def generate_launch_description():
 
     urdf_path = os.path.join(pkg, "urdf", "agents.urdf.xacro")
 
-    robot_description_config = xacro.process_file(urdf_path)
-    robot_desc = robot_description_config.toxml()
+    robot_desc = xacro.process_file(urdf_path).toxml()
 
     resource_path = SetEnvironmentVariable(
         name="GZ_SIM_RESOURCE_PATH", value=[os.path.join(pkg, "..")]

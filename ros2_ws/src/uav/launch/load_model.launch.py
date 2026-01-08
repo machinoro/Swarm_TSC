@@ -17,8 +17,7 @@ def generate_launch_description():
         name="GZ_SIM_RESOURCE_PATH", value=[os.path.join(pkg, "..")]
     )
 
-    robot_description_config = xacro.process_file(urdf_path)
-    robot_desc = robot_description_config.toxml()
+    robot_desc = xacro.process_file(urdf_path).toxml()
 
     gazebo_sim = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
