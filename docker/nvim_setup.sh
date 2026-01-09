@@ -16,9 +16,9 @@ node -v
 npm -v
 sudo rm -rf /var/lib/apt/lists/*
 
-sudo apt-get update
-sudo apt-get install -y clang clang-format python3-venv
-
-mkdir -p ~/.config
-git clone https://github.com/machinoro/neovim ~/.config/nvim
+# sudo apt-get update
+# sudo apt-get install -y clang clang-format python3-venv
+#
+# mkdir -p ~/.config
+# git clone https://github.com/machinoro/neovim ~/.config/nvim
 

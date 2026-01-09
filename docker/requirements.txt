@@ -35,3 +35,11 @@ ros-humble-geometry-msgs
 ros-humble-tf2 
 ros-humble-nav-msgs
 ros-humble-ros-ign-bridge
+
+gstreamer1.0-plugins-bad 
+gstreamer1.0-libav 
+gstreamer1.0-gl
+libfuse2
+libxcb-xinerama0 
+libxkbcommon-x11-0 
+libxcb-cursor-dev
