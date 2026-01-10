@@ -1,0 +1,384 @@
+<sdf version="1.11">
+  <model name="tarot">
+    <link name="base_link">
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>1.5</mass>
+        <inertia>
+          <ixx>0.021700000000000001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.029499999999999998</iyy>
+          <iyz>0</iyz>
+          <izz>0.041399999999999999</izz>
+        </inertia>
+      </inertial>
+      <collision name="base_link_collision">
+        <pose>0 0 0.45000000000000001 1.5708 0 1.5697000000000001</pose>
+        <geometry>
+          <mesh>
+            <scale>0.0018799999999999999 0.00183 0.00183</scale>
+            <uri>model://tarot/meshes/collision/tarot.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode></ode>
+          </contact>
+          <friction>
+            <ode></ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="base_link_visual">
+        <pose>0 0 0.45000000000000001 1.5708 0 1.5697000000000001</pose>
+        <geometry>
+          <mesh>
+            <scale>0.0018799999999999999 0.00183 0.00183</scale>
+            <uri>model://tarot/meshes/collision/tarot.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <!-- <script> -->
+          <!--   <name>Gazebo/DarkGray</name> -->
+          <!--   <uri>file://media/materials/scripts/gazebo.material</uri> -->
+          <!-- </script> -->
+          <diffuse>0.37500003 0.37500003 0.37500003 1</diffuse>
+          <ambient>0.37500003 0.37500003 0.37500003 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="motor_1_joint" type="revolute">
+      <pose relative_to="base_link">0.40000000000000002 -0.38 0.501 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>motor_1</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="motor_1">
+      <pose relative_to="motor_1_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.0050000000000000001</mass>
+        <inertia>
+          <ixx>9.7499999999999998e-07</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00027310399999999998</iyy>
+          <iyz>0</iyz>
+          <izz>0.000274004</izz>
+        </inertia>
+      </inertial>
+      <collision name="motor_1_collision">
+        <pose>0 0 0.025000000000000001 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.02</length>
+            <radius>0.32000000000000001</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode></ode>
+          </contact>
+          <friction>
+            <ode></ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="motor_1_visual">
+        <pose>-0.36799999999999999 -0.36199999999999999 -0.025000000000000001 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>2.5 2.5 1</scale>
+            <uri>model://tarot/meshes/collision/tarot_prop_ccw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0 0 1 1</diffuse>
+          <ambient>0 0 1 1</ambient>
+        </material>
+      </visual>
+      <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+        <robotNamespace>tarot</robotNamespace>
+        <jointName>motor_1_joint</jointName>
+        <linkName>motor_1</linkName>
+        <turningDirection>ccw</turningDirection>
+        <timeConstantUp>0.0125</timeConstantUp>
+        <timeConstantDown>0.025</timeConstantDown>
+        <maxRotVelocity>1100</maxRotVelocity>
+        <motorConstant>8.54858e-06</motorConstant>
+        <momentConstant>0.06</momentConstant>
+        <commandSubTopic>command/motor_speed</commandSubTopic>
+        <motorNumber>1</motorNumber>
+        <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+        <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+        <motorSpeedPubTopic>motor_speed/1</motorSpeedPubTopic>
+        <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+        <motorType>velocity</motorType>
+      </plugin>
+    </link>
+    <joint name="motor_2_joint" type="revolute">
+      <pose relative_to="base_link">-0.40000000000000002 0.40999999999999998 0.501 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>motor_2</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="motor_2">
+      <pose relative_to="motor_2_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.0050000000000000001</mass>
+        <inertia>
+          <ixx>9.7499999999999998e-07</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00027310399999999998</iyy>
+          <iyz>0</iyz>
+          <izz>0.000274004</izz>
+        </inertia>
+      </inertial>
+      <collision name="motor_2_collision">
+        <pose>0 0 0.025000000000000001 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.02</length>
+            <radius>0.32000000000000001</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode></ode>
+          </contact>
+          <friction>
+            <ode></ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="motor_2_visual">
+        <pose>-0.36799999999999999 -0.36199999999999999 -0.025000000000000001 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>2.5 2.5 1</scale>
+            <uri>model://tarot/meshes/collision/tarot_prop_ccw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0 0 1 1</diffuse>
+          <ambient>0 0 1 1</ambient>
+        </material>
+      </visual>
+      <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+        <robotNamespace>tarot</robotNamespace>
+        <jointName>motor_2_joint</jointName>
+        <linkName>motor_2</linkName>
+        <turningDirection>ccw</turningDirection>
+        <timeConstantUp>0.0125</timeConstantUp>
+        <timeConstantDown>0.025</timeConstantDown>
+        <maxRotVelocity>1100</maxRotVelocity>
+        <motorConstant>8.54858e-06</motorConstant>
+        <momentConstant>0.06</momentConstant>
+        <commandSubTopic>command/motor_speed</commandSubTopic>
+        <motorNumber>2</motorNumber>
+        <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+        <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+        <motorSpeedPubTopic>motor_speed/2</motorSpeedPubTopic>
+        <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+        <motorType>velocity</motorType>
+      </plugin>
+    </link>
+    <joint name="motor_3_joint" type="revolute">
+      <pose relative_to="base_link">0.40000000000000002 0.40000000000000002 0.501 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>motor_3</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="motor_3">
+      <pose relative_to="motor_3_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.0050000000000000001</mass>
+        <inertia>
+          <ixx>9.7499999999999998e-07</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00027310399999999998</iyy>
+          <iyz>0</iyz>
+          <izz>0.000274004</izz>
+        </inertia>
+      </inertial>
+      <collision name="motor_3_collision">
+        <pose>0 0 0.025000000000000001 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.02</length>
+            <radius>0.32000000000000001</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode></ode>
+          </contact>
+          <friction>
+            <ode></ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="motor_3_visual">
+        <pose>-0.36799999999999999 0.36199999999999999 -0.025000000000000001 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>2.5 2.5 1</scale>
+            <uri>model://tarot/meshes/collision/tarot_prop_cw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 0 0 1</diffuse>
+          <ambient>1 0 0 1</ambient>
+        </material>
+      </visual>
+      <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+        <robotNamespace>tarot</robotNamespace>
+        <jointName>motor_3_joint</jointName>
+        <linkName>motor_3</linkName>
+        <turningDirection>cw</turningDirection>
+        <timeConstantUp>0.0125</timeConstantUp>
+        <timeConstantDown>0.025</timeConstantDown>
+        <maxRotVelocity>1100</maxRotVelocity>
+        <motorConstant>8.54858e-06</motorConstant>
+        <momentConstant>0.06</momentConstant>
+        <commandSubTopic>command/motor_speed</commandSubTopic>
+        <motorNumber>3</motorNumber>
+        <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+        <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+        <motorSpeedPubTopic>motor_speed/3</motorSpeedPubTopic>
+        <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+        <motorType>velocity</motorType>
+      </plugin>
+    </link>
+    <joint name="motor_4_joint" type="revolute">
+      <pose relative_to="base_link">-0.40000000000000002 -0.40000000000000002 0.501 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>motor_4</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="motor_4">
+      <pose relative_to="motor_4_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.0050000000000000001</mass>
+        <inertia>
+          <ixx>9.7499999999999998e-07</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00027310399999999998</iyy>
+          <iyz>0</iyz>
+          <izz>0.000274004</izz>
+        </inertia>
+      </inertial>
+      <collision name="motor_4_collision">
+        <pose>0 0 0.025000000000000001 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.02</length>
+            <radius>0.32000000000000001</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode></ode>
+          </contact>
+          <friction>
+            <ode></ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="motor_4_visual">
+        <pose>-0.36799999999999999 0.36199999999999999 -0.025000000000000001 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>2.5 2.5 1</scale>
+            <uri>model://tarot/meshes/collision/tarot_prop_cw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 0 0 1</diffuse>
+          <ambient>1 0 0 1</ambient>
+        </material>
+      </visual>
+      <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+        <robotNamespace>tarot</robotNamespace>
+        <jointName>motor_4_joint</jointName>
+        <linkName>motor_4</linkName>
+        <turningDirection>cw</turningDirection>
+        <timeConstantUp>0.0125</timeConstantUp>
+        <timeConstantDown>0.025</timeConstantDown>
+        <maxRotVelocity>1100</maxRotVelocity>
+        <motorConstant>8.54858e-06</motorConstant>
+        <momentConstant>0.06</momentConstant>
+        <commandSubTopic>command/motor_speed</commandSubTopic>
+        <motorNumber>4</motorNumber>
+        <rotorDragCoefficient>0.000175</rotorDragCoefficient>
+        <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+        <motorSpeedPubTopic>motor_speed/4</motorSpeedPubTopic>
+        <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+        <motorType>velocity</motorType>
+      </plugin>
+    </link>
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"></plugin>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+    </physics>
+  </model>
+</sdf>

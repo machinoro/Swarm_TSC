@@ -1,0 +1,17 @@
+<sdf version="1.7">
+  <world name="tarot_test_world">
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Sun</uri>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/Ground Plane</uri>
+      <!-- <name>bayland</name> -->
+      <!-- <pose>0 0 -1.5 0 0 0</pose> -->
+    </include>
+    <include>
+      <uri>model://tarot</uri>
+      <name>tarot</name>
+      <!-- <pose>0 0 0.45 0 0 0</pose> -->
+    </include>
+  </world>
+</sdf>
