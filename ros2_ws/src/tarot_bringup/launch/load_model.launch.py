@@ -34,6 +34,8 @@ def generate_launch_description():
             "tarot",
             "-string",
             robot_desc,
+            "-z",
+            "0.5",
         ],
         output="screen",
     )
