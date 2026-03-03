@@ -23,8 +23,8 @@
       <material name="dark_gray"></material>
     </visual>
   </link>
-  <xacro:rotor number="1" rotation_type="ccw" xyz="0.40 -0.38 0.501"></xacro:rotor>
-  <xacro:rotor number="2" rotation_type="ccw" xyz="-0.40 0.41 0.501"></xacro:rotor>
-  <xacro:rotor number="3" rotation_type="cw" xyz="0.40 0.40 0.501"></xacro:rotor>
-  <xacro:rotor number="4" rotation_type="cw" xyz="-0.40 -0.40 0.501"></xacro:rotor>
+  <xacro:rotor number="0" rotation_type="ccw" xyz="0.41 -0.37 0.501"></xacro:rotor>
+  <xacro:rotor number="1" rotation_type="ccw" xyz="-0.39 0.43 0.501"></xacro:rotor>
+  <xacro:rotor number="2" rotation_type="cw" xyz="0.41 0.43 0.501"></xacro:rotor>
+  <xacro:rotor number="3" rotation_type="cw" xyz="-0.39 -0.37 0.501"></xacro:rotor>
 </robot>
