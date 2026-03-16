@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="propeller" params="number parent direction xyz">
+    <link name="propeller_${number}">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0.0235"></origin>
+        <mass value="0.0042"></mass>
+        <inertia ixx="4.29e-6" ixy="0" ixz="0" iyy="4.29e-6" iyz="0" izz="8.55e-6"></inertia>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://agent_description/models/agent/meshes/collision/propeller_${direction}.stl"></mesh>
+        </geometry>
+        <material name="propeller_material_${direction}"></material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://agent_description/models/agent/meshes/collision/propeller_${direction}.stl"></mesh>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="propeller_${number}_joint" type="continuous">
+      <parent link="${parent}"></parent>
+      <child link="propeller_${number}"></child>
+      <origin rpy="0 0 0" xyz="${xyz}"></origin>
+      <axis xyz="0 0 1"></axis>
+      <dynamics damping="1e-6" friction="0"></dynamics>
+    </joint>
+  </xacro:macro>
+</robot>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="agent" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find agent_description)/urdf/propeller.xacro"></xacro:include>
+  <xacro:include filename="$(find agent_description)/urdf/gazebo.xacro"></xacro:include>
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.001 -4.168e-4 -0.021"></origin>
+      <mass value="0.467"></mass>
+      <inertia ixx="0.002" ixy="-7.476e-6" ixz="2.926e-6" iyy="0.003" iyz="-6.366e-6" izz="0.005"></inertia>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.095"></origin>
+      <geometry>
+        <mesh filename="package://agent_description/models/agent/meshes/collision/chasis2.stl"></mesh>
+      </geometry>
+      <material name="base_material"></material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.095"></origin>
+      <geometry>
+        <mesh filename="package://agent_description/models/agent/meshes/collision/chasis2.stl"></mesh>
+      </geometry>
+    </collision>
+  </link>
+  <xacro:propeller direction="ccw" number="0" parent="base_link" xyz="0.09877 -0.07831 0.104"></xacro:propeller>
+  <xacro:propeller direction="ccw" number="1" parent="base_link" xyz="-0.09877 0.07831 0.104"></xacro:propeller>
+  <xacro:propeller direction="cw" number="2" parent="base_link" xyz="0.09877 0.07831 0.104"></xacro:propeller>
+  <xacro:propeller direction="cw" number="3" parent="base_link" xyz="-0.09877 -0.07831 0.104"></xacro:propeller>
+  <link name="battery">
+    <inertial>
+      <mass value="0.4"></mass>
+      <origin rpy="0 0 0" xyz="0 0 0"></origin>
+      <inertia ixx="0.000066567" ixy="0" ixz="0" iyy="0.000416833" iyz="0" izz="0.000427333"></inertia>
+    </inertial>
+    <collision>
+      <geometry>
+        <box size="0.108 0.034 0.029"></box>
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <box size="0.108 0.034 0.029"></box>
+      </geometry>
+      <material name="red"></material>
+    </visual>
+  </link>
+  <joint name="battery_joint" type="fixed">
+    <parent link="base_link"></parent>
+    <child link="battery"></child>
+    <origin rpy="0 0 1.57079" xyz="0 0 0.059"></origin>
+  </joint>
+</robot>
