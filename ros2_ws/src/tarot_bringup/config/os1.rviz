@@ -1,0 +1,43 @@
+Panels:
+  - Class: rviz_common/Displays
+  - Class: rviz_common/Views
+
+Visualization Manager:
+  Global Options:
+    Fixed Frame: ouster_lidar       # must match gz_frame_id in your xacro
+    Frame Rate: 30
+
+  Displays:
+
+    # ------- Robot model -------
+    - Class: rviz_default_plugins/RobotModel
+      Name: Tarot drone
+      Enabled: true
+      Description Source: Topic
+      Description Topic: /robot_description
+      Alpha: 0.8
+
+    # ------- Point cloud -------
+    - Class: rviz_default_plugins/PointCloud2
+      Name: OS1-64 LiDAR
+      Enabled: true
+      Topic:
+        Value: /ouster/points
+        Depth: 5
+        Reliability Policy: Best Effort   # match bridge QoS
+        Durability Policy: Volatile
+      Style: Points                        # or Flat Squares / Spheres
+      Size (Pixels): 2
+      Color Transformer: AxisColor        # colour by Z height (good for UAV)
+      Axis: Z
+      Min Color: [0, 0, 255]
+      Max Color: [255, 0, 0]
+      Decay Time: 0                        # set >0 to persist old scans
+
+    # ------- TF frames -------
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Enabled: true
+      Show Axes: true
+      Show Names: true
+      Marker Scale: 0.3

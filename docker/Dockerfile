@@ -1,4 +1,4 @@
-FROM osrf/ros:humble-desktop-full 
+FROM osrf/ros:humble-desktop
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -19,19 +19,13 @@ RUN mkdir -p ${ROS2_WS}/src
 
 SHELL ["/bin/bash", "-c"]
 
-COPY docker/requirements.txt .
-RUN sudo apt-get update && sudo apt-get install -y $(cat requirements.txt)
-
-COPY docker/nvim_setup.sh /tmp/nvim_setup.sh 
-RUN /tmp/nvim_setup.sh 
-
 RUN sudo curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] https://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
 RUN sudo apt-get update \
-    && sudo apt-get install gz-harmonic -y
-
+    && sudo apt-get install -y ros-humble-ros-gzharmonic
+ENV GZ_SIM_SYSTEM_PLUGIN_PATH=/opt/ros/humble/lib
+ENV GZ_VERSION=harmonic
 RUN sudo echo ". /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc 
-RUN export GZ_SIM_SYSTEM_PLUGIN_PATH=$IGN_GAZEBO_SYSTEM_PLUGIN_PATH:/opt/ros/humble/lib
 
 WORKDIR /home/${UNAME}
 RUN git clone https://github.com/PX4/PX4-Autopilot.git --recursive \
@@ -59,8 +53,15 @@ RUN chmod +x QGroundControl-x86_64.AppImage \
     && chmod +x squashfs-root/AppRun \
     && sudo ln -s /home/${UNAME}/squashfs-root/AppRun /usr/local/bin/qgc
 
+COPY docker/requirements.txt .
+RUN sudo apt-get update && sudo apt-get install -y $(cat requirements.txt)
+
+COPY docker/nvim_setup.sh /tmp/nvim_setup.sh 
+RUN /tmp/nvim_setup.sh 
+
 RUN sudo usermod -a -G dialout ${UNAME} 
 WORKDIR /home/${UNAME}/ros_ws/ros2_ws
 COPY docker/ros_entrypoint.sh /ros_entrypoint.sh
 ENTRYPOINT ["/ros_entrypoint.sh"]
+WORKDIR /home/${UNAME}/
 CMD ["bash"]

@@ -30,11 +30,9 @@ unzip
 clang-format
 
 ros-humble-joint-state-publisher-gui
-ros-humble-ign-ros2-control 
 ros-humble-geometry-msgs 
 ros-humble-tf2 
 ros-humble-nav-msgs
-ros-humble-ros-ign-bridge
 
 gstreamer1.0-plugins-bad 
 gstreamer1.0-libav 
@@ -43,3 +41,5 @@ libfuse2
 libxcb-xinerama0 
 libxkbcommon-x11-0 
 libxcb-cursor-dev
+libopencv-dev 
+python3-opencv

@@ -26,6 +26,12 @@ def generate_launch_description():
         launch_arguments={"gz_args": "-r empty.sdf"}.items(),
     )
 
+    ros_gz_bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        arguments=["/os1/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked"],
+    )
+
     spawn_robot = Node(
         package="ros_gz_sim",
         executable="create",
@@ -40,4 +46,4 @@ def generate_launch_description():
         output="screen",
     )
 
-    return LaunchDescription([resource_path, gazebo_sim, spawn_robot])
+    return LaunchDescription([resource_path, gazebo_sim, spawn_robot, ros_gz_bridge])
