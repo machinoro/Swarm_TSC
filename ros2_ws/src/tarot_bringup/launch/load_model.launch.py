@@ -40,10 +40,33 @@ def generate_launch_description():
             "tarot",
             "-string",
             robot_desc,
-            "-z",
-            "0.5",
         ],
         output="screen",
     )
 
-    return LaunchDescription([resource_path, gazebo_sim, spawn_robot, ros_gz_bridge])
+    robot_state_publisher = Node(
+        package="robot_state_publisher",
+        executable="robot_state_publisher",
+        parameters=[{"robot_description": robot_desc}],
+        output="screen",
+    )
+
+    joint_state_publisher = Node(
+        package="joint_state_publisher",
+        executable="joint_state_publisher",
+        name="joint_state_publisher",
+    )
+
+    rviz2 = Node(package="rviz2", executable="rviz2", name="rviz2", output="screen")
+
+    return LaunchDescription(
+        [
+            resource_path,
+            gazebo_sim,
+            spawn_robot,
+            ros_gz_bridge,
+            robot_state_publisher,
+            rviz2,
+            joint_state_publisher,
+        ]
+    )

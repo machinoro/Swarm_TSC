@@ -29,18 +29,19 @@
     <link name="${imu_link}"></link>
     <link name="${lidar_link}"></link>
     <joint name="${name}_imu_joint" type="fixed">
-      <parent link="${name}"></parent>
+      <parent link="${parent}"></parent>
       <child link="${imu_link}"></child>
       <origin rpy="0 0 0" xyz="0.006253 -0.011775 0.007645"></origin>
     </joint>
     <joint name="${name}_lidar_joint" type="fixed">
-      <parent link="${name}"></parent>
+      <parent link="${parent}"></parent>
       <child link="${lidar_link}"></child>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.03618"></origin>
     </joint>
     <gazebo reference="${lidar_link}">
       <sensor name="${name}_lidar" type="gpu_lidar">
         <pose relative_to="${name}">0 0 0 0 0 0</pose>
+        <gz_frame_id>${lidar_link}</gz_frame_id>
         <visualize>false</visualize>
         <update_rate>${hz}</update_rate>
         <topic>/os1</topic>
@@ -48,13 +49,13 @@
         <lidar>
           <scan>
             <horizontal>
-              <samples>16</samples>
+              <samples>1024</samples>
               <resolution>1</resolution>
               <min_angle>${min_angle}</min_angle>
               <max_angle>${max_angle}</max_angle>
             </horizontal>
             <vertical>
-              <samples>10</samples>
+              <samples>16</samples>
               <resolution>1</resolution>
               <min_angle>${vfov_min}</min_angle>
               <max_angle>${vfov_max}</max_angle>
