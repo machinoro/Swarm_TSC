@@ -1,19 +1,19 @@
-<sdf version="1.11">
-  <model name="tarot">
-    <link name="base_link">
+<sdf version='1.11'>
+  <model name='tarot'>
+    <link name='base_link'>
       <inertial>
-        <pose>0 0 0 0 0 0</pose>
-        <mass>1.5</mass>
+        <pose>0.0023442622950819668 0.0045081967213114749 0.098549180327868843 0 0 0</pose>
+        <mass>1.8300000000000001</mass>
         <inertia>
-          <ixx>0.021700000000000001</ixx>
-          <ixy>0</ixy>
-          <ixz>0</ixz>
-          <iyy>0.029499999999999998</iyy>
-          <iyz>0</iyz>
-          <izz>0.041399999999999999</izz>
+          <ixx>0.1028958959508197</ixx>
+          <ixy>-8.7909836065573776e-05</ixy>
+          <ixz>-0.001921709016393443</ixz>
+          <iyy>0.1105725516885246</iyy>
+          <iyz>-0.0036955942622950819</iyz>
+          <izz>0.041878770491803281</izz>
         </inertia>
       </inertial>
-      <collision name="base_link_collision">
+      <collision name='base_link_collision'>
         <pose>0 0 0.45000000000000001 1.5708 0 1.5697000000000001</pose>
         <geometry>
           <mesh>
@@ -23,14 +23,23 @@
         </geometry>
         <surface>
           <contact>
-            <ode></ode>
+            <ode/>
           </contact>
           <friction>
-            <ode></ode>
+            <ode/>
           </friction>
         </surface>
       </collision>
-      <visual name="base_link_visual">
+      <collision name='base_link_fixed_joint_lump__ouster_collision_collision_1'>
+        <pose>0.012999999999999999 0.025000000000000001 0.54649999999999999 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.072999999999999995</length>
+            <radius>0.040000000000000001</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
         <pose>0 0 0.45000000000000001 1.5708 0 1.5697000000000001</pose>
         <geometry>
           <mesh>
@@ -47,99 +56,186 @@
           <ambient>0.37500003 0.37500003 0.37500003 1</ambient>
         </material>
       </visual>
-      <sensor name="air_pressure_sensor" type="air_pressure">
-        <always_on>1</always_on>
+      <visual name='base_link_fixed_joint_lump__ouster_visual_visual_1'>
+        <pose>0.012999999999999999 0.025000000000000001 0.51000000000000001 0 0 1.5707</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tarot/meshes/collision/os1.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <sensor name='air_pressure_sensor' type='air_pressure'>
+        <always_on>true</always_on>
         <update_rate>50</update_rate>
         <air_pressure>
-          <!-- Noise modeled after BMP390 -->
           <pressure>
-            <noise type="gaussian">
+            <noise type='gaussian'>
               <mean>0</mean>
               <stddev>3</stddev>
             </noise>
           </pressure>
         </air_pressure>
       </sensor>
-      <sensor name="magnetometer_sensor" type="magnetometer">
-        <always_on>1</always_on>
+      <sensor name='magnetometer_sensor' type='magnetometer'>
+        <always_on>true</always_on>
         <update_rate>100</update_rate>
         <magnetometer>
-          <!-- TODO: update to fix units and coordinate system when we move past Harmonic -->
-          <!-- See https://github.com/gazebosim/gz-sim/pull/2460 -->
-          <!-- 3mgauss RMS: NOTE: noise is in tesla but sensor reports data in gauss -->
-          <!-- Noise modeled after IIS2MDC -->
           <x>
-            <noise type="gaussian">
+            <noise type='gaussian'>
               <stddev>0.0001</stddev>
             </noise>
           </x>
           <y>
-            <noise type="gaussian">
+            <noise type='gaussian'>
               <stddev>0.0001</stddev>
             </noise>
           </y>
           <z>
-            <noise type="gaussian">
+            <noise type='gaussian'>
               <stddev>0.0001</stddev>
             </noise>
           </z>
         </magnetometer>
       </sensor>
-      <sensor name="imu_sensor" type="imu">
-        <always_on>1</always_on>
+      <sensor name='imu_sensor' type='imu'>
+        <always_on>true</always_on>
         <update_rate>250</update_rate>
         <imu>
           <angular_velocity>
-            <!-- Noise modeled after IIM42653 -->
-            <!-- 0.05 deg/s converted to rad/s -->
             <x>
-              <noise type="gaussian">
-                <mean>0.0</mean>
-                <stddev>0.0008726646</stddev>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.00087266459999999998</stddev>
               </noise>
             </x>
             <y>
-              <noise type="gaussian">
-                <mean>0.0</mean>
-                <stddev>0.0008726646</stddev>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.00087266459999999998</stddev>
               </noise>
             </y>
             <z>
-              <noise type="gaussian">
-                <mean>0.0</mean>
-                <stddev>0.0008726646</stddev>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.00087266459999999998</stddev>
               </noise>
             </z>
           </angular_velocity>
           <linear_acceleration>
             <x>
-              <noise type="gaussian">
-                <mean>0.0</mean>
-                <stddev>0.00637</stddev>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0063699999999999998</stddev>
               </noise>
             </x>
             <y>
-              <noise type="gaussian">
-                <mean>0.0</mean>
-                <stddev>0.00637</stddev>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0063699999999999998</stddev>
               </noise>
             </y>
             <z>
-              <noise type="gaussian">
-                <mean>0.0</mean>
-                <stddev>0.00686</stddev>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0068599999999999998</stddev>
               </noise>
             </z>
           </linear_acceleration>
         </imu>
+        <gz_frame_id>base_link</gz_frame_id>
       </sensor>
-      <sensor name="navsat_sensor" type="navsat">
-        <always_on>1</always_on>
+      <sensor name='navsat_sensor' type='navsat'>
+        <always_on>true</always_on>
         <update_rate>30</update_rate>
+        <gps/>
+      </sensor>
+      <sensor name='ouster_imu' type='imu'>
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+        <topic>/os1_cloud_node/imu</topic>
+        <imu>
+          <linear_acceleration>
+            <x>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0050000000000000001</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0050000000000000001</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0050000000000000001</stddev>
+              </noise>
+            </z>
+          </linear_acceleration>
+          <angular_velocity>
+            <x>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0050000000000000001</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0050000000000000001</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0050000000000000001</stddev>
+              </noise>
+            </z>
+          </angular_velocity>
+        </imu>
+        <pose>0.019252999999999999 0.013225000000000001 0.51764500000000002 0 0 0</pose>
+        <frame_id>os1_imu</frame_id>
+      </sensor>
+      <sensor name='ouster_lidar' type='gpu_lidar'>
+        <pose relative_to='ouster'>0 0 0 0 0 0</pose>
+        <visualize>false</visualize>
+        <update_rate>10</update_rate>
+        <topic>/os1</topic>
+        <lidar>
+          <scan>
+            <horizontal>
+              <samples>1024</samples>
+              <resolution>1</resolution>
+              <min_angle>-3.1415926535897931</min_angle>
+              <max_angle>3.1415926535897931</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>16</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.26000000000000001</min_angle>
+              <max_angle>0.26000000000000001</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>0.80000000000000004</min>
+            <max>100</max>
+            <resolution>0.029999999999999999</resolution>
+          </range>
+          <noise>
+            <mean>0</mean>
+            <stddev>0.0080000000000000002</stddev>
+            <type>gaussian</type>
+          </noise>
+        </lidar>
+        <gz_frame_id>os1_lidar</gz_frame_id>
+        <frame_id>os1_lidar</frame_id>
       </sensor>
     </link>
-    <joint name="motor_0_joint" type="revolute">
-      <pose relative_to="base_link">0.40999999999999998 -0.37 0.501 0 0 0</pose>
+    <joint name='motor_0_joint' type='revolute'>
+      <pose relative_to='base_link'>0.40000000000000002 -0.38 0.501 0 0 0</pose>
       <parent>base_link</parent>
       <child>motor_0</child>
       <axis>
@@ -156,8 +252,8 @@
         </dynamics>
       </axis>
     </joint>
-    <link name="motor_0">
-      <pose relative_to="motor_0_joint">0 0 0 0 0 0</pose>
+    <link name='motor_0'>
+      <pose relative_to='motor_0_joint'>0 0 0 0 0 0</pose>
       <inertial>
         <pose>0 0 0 0 0 0</pose>
         <mass>0.0050000000000000001</mass>
@@ -170,7 +266,7 @@
           <izz>0.000274004</izz>
         </inertia>
       </inertial>
-      <collision name="motor_0_collision">
+      <collision name='motor_0_collision'>
         <pose>0 0 0.025000000000000001 0 0 0</pose>
         <geometry>
           <cylinder>
@@ -178,16 +274,8 @@
             <radius>0.32000000000000001</radius>
           </cylinder>
         </geometry>
-        <surface>
-          <contact>
-            <ode></ode>
-          </contact>
-          <friction>
-            <ode></ode>
-          </friction>
-        </surface>
       </collision>
-      <visual name="motor_0_visual">
+      <visual name='motor_0_visual'>
         <pose>-0.36799999999999999 -0.36199999999999999 -0.025000000000000001 0 0 0</pose>
         <geometry>
           <mesh>
@@ -201,8 +289,8 @@
         </material>
       </visual>
     </link>
-    <joint name="motor_1_joint" type="revolute">
-      <pose relative_to="base_link">-0.39000000000000001 0.42999999999999999 0.501 0 0 0</pose>
+    <joint name='motor_1_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.40000000000000002 0.40999999999999998 0.501 0 0 0</pose>
       <parent>base_link</parent>
       <child>motor_1</child>
       <axis>
@@ -219,8 +307,8 @@
         </dynamics>
       </axis>
     </joint>
-    <link name="motor_1">
-      <pose relative_to="motor_1_joint">0 0 0 0 0 0</pose>
+    <link name='motor_1'>
+      <pose relative_to='motor_1_joint'>0 0 0 0 0 0</pose>
       <inertial>
         <pose>0 0 0 0 0 0</pose>
         <mass>0.0050000000000000001</mass>
@@ -233,7 +321,7 @@
           <izz>0.000274004</izz>
         </inertia>
       </inertial>
-      <collision name="motor_1_collision">
+      <collision name='motor_1_collision'>
         <pose>0 0 0.025000000000000001 0 0 0</pose>
         <geometry>
           <cylinder>
@@ -241,16 +329,8 @@
             <radius>0.32000000000000001</radius>
           </cylinder>
         </geometry>
-        <surface>
-          <contact>
-            <ode></ode>
-          </contact>
-          <friction>
-            <ode></ode>
-          </friction>
-        </surface>
       </collision>
-      <visual name="motor_1_visual">
+      <visual name='motor_1_visual'>
         <pose>-0.36799999999999999 -0.36199999999999999 -0.025000000000000001 0 0 0</pose>
         <geometry>
           <mesh>
@@ -264,8 +344,8 @@
         </material>
       </visual>
     </link>
-    <joint name="motor_2_joint" type="revolute">
-      <pose relative_to="base_link">0.40999999999999998 0.42999999999999999 0.501 0 0 0</pose>
+    <joint name='motor_2_joint' type='revolute'>
+      <pose relative_to='base_link'>0.40000000000000002 0.40000000000000002 0.501 0 0 0</pose>
       <parent>base_link</parent>
       <child>motor_2</child>
       <axis>
@@ -282,8 +362,8 @@
         </dynamics>
       </axis>
     </joint>
-    <link name="motor_2">
-      <pose relative_to="motor_2_joint">0 0 0 0 0 0</pose>
+    <link name='motor_2'>
+      <pose relative_to='motor_2_joint'>0 0 0 0 0 0</pose>
       <inertial>
         <pose>0 0 0 0 0 0</pose>
         <mass>0.0050000000000000001</mass>
@@ -296,7 +376,7 @@
           <izz>0.000274004</izz>
         </inertia>
       </inertial>
-      <collision name="motor_2_collision">
+      <collision name='motor_2_collision'>
         <pose>0 0 0.025000000000000001 0 0 0</pose>
         <geometry>
           <cylinder>
@@ -304,16 +384,8 @@
             <radius>0.32000000000000001</radius>
           </cylinder>
         </geometry>
-        <surface>
-          <contact>
-            <ode></ode>
-          </contact>
-          <friction>
-            <ode></ode>
-          </friction>
-        </surface>
       </collision>
-      <visual name="motor_2_visual">
+      <visual name='motor_2_visual'>
         <pose>-0.36799999999999999 0.36199999999999999 -0.025000000000000001 0 0 0</pose>
         <geometry>
           <mesh>
@@ -327,8 +399,8 @@
         </material>
       </visual>
     </link>
-    <joint name="motor_3_joint" type="revolute">
-      <pose relative_to="base_link">-0.39000000000000001 -0.37 0.501 0 0 0</pose>
+    <joint name='motor_3_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.40000000000000002 -0.40000000000000002 0.501 0 0 0</pose>
       <parent>base_link</parent>
       <child>motor_3</child>
       <axis>
@@ -345,8 +417,8 @@
         </dynamics>
       </axis>
     </joint>
-    <link name="motor_3">
-      <pose relative_to="motor_3_joint">0 0 0 0 0 0</pose>
+    <link name='motor_3'>
+      <pose relative_to='motor_3_joint'>0 0 0 0 0 0</pose>
       <inertial>
         <pose>0 0 0 0 0 0</pose>
         <mass>0.0050000000000000001</mass>
@@ -359,7 +431,7 @@
           <izz>0.000274004</izz>
         </inertia>
       </inertial>
-      <collision name="motor_3_collision">
+      <collision name='motor_3_collision'>
         <pose>0 0 0.025000000000000001 0 0 0</pose>
         <geometry>
           <cylinder>
@@ -367,16 +439,8 @@
             <radius>0.32000000000000001</radius>
           </cylinder>
         </geometry>
-        <surface>
-          <contact>
-            <ode></ode>
-          </contact>
-          <friction>
-            <ode></ode>
-          </friction>
-        </surface>
       </collision>
-      <visual name="motor_3_visual">
+      <visual name='motor_3_visual'>
         <pose>-0.36799999999999999 0.36199999999999999 -0.025000000000000001 0 0 0</pose>
         <geometry>
           <mesh>
@@ -390,8 +454,13 @@
         </material>
       </visual>
     </link>
-    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
-      <!-- <robotNamespace>tarot</robotNamespace> -->
+    <plugin name='gz::sim::systems::JointStatePublisher' filename='gz-sim-joint-state-publisher-system'>
+      <joint_name>motor_0_joint</joint_name>
+      <joint_name>motor_1_joint</joint_name>
+      <joint_name>motor_2_joint</joint_name>
+      <joint_name>motor_3_joint</joint_name>
+    </plugin>
+    <plugin name='gz::sim::systems::MulticopterMotorModel' filename='gz-sim-multicopter-motor-model-system'>
       <jointName>motor_0_joint</jointName>
       <linkName>motor_0</linkName>
       <turningDirection>ccw</turningDirection>
@@ -407,8 +476,7 @@
       <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
-    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
-      <!-- <robotNamespace>tarot</robotNamespace> -->
+    <plugin name='gz::sim::systems::MulticopterMotorModel' filename='gz-sim-multicopter-motor-model-system'>
       <jointName>motor_1_joint</jointName>
       <linkName>motor_1</linkName>
       <turningDirection>ccw</turningDirection>
@@ -424,8 +492,7 @@
       <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
-    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
-      <!-- <robotNamespace>tarot</robotNamespace> -->
+    <plugin name='gz::sim::systems::MulticopterMotorModel' filename='gz-sim-multicopter-motor-model-system'>
       <jointName>motor_2_joint</jointName>
       <linkName>motor_2</linkName>
       <turningDirection>cw</turningDirection>
@@ -441,8 +508,7 @@
       <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
-    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
-      <!-- <robotNamespace>tarot</robotNamespace> -->
+    <plugin name='gz::sim::systems::MulticopterMotorModel' filename='gz-sim-multicopter-motor-model-system'>
       <jointName>motor_3_joint</jointName>
       <linkName>motor_3</linkName>
       <turningDirection>cw</turningDirection>
@@ -458,6 +524,23 @@
       <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
-    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher"></plugin>
+    <frame name='ouster_imu_joint' attached_to='ouster'>
+      <pose>0.0062529999999999999 -0.011775000000000001 0.0076449999999999999 0 0 0</pose>
+    </frame>
+    <frame name='os1_imu' attached_to='ouster_imu_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='ouster_lidar_joint' attached_to='ouster'>
+      <pose>0 0 0.036179999999999997 0 0 0</pose>
+    </frame>
+    <frame name='os1_lidar' attached_to='ouster_lidar_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='ouster_mount_joint' attached_to='base_link'>
+      <pose>0.012999999999999999 0.025000000000000001 0.51000000000000001 0 0 0</pose>
+    </frame>
+    <frame name='ouster' attached_to='ouster_mount_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
   </model>
 </sdf>
